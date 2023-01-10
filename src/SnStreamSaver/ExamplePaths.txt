@@ -1,0 +1,30 @@
+﻿/Root/YourDocuments/PressRoom/SenseNet6-Logos.pdf
+/Root/Sites/En-KSZF/Key documents/Statistics/Monthly derivative spot statistics/2013/2013_5fder_5fstat_5fhu.pdf
+/Root/Sites/En-KSZF/Key documents/Statistics/Monthly derivative spot statistics/2015/2015.04_5fhu_5fderspot statisztika.pdf
+/Root/Sites/KELER/Dokumentumtár/Szabályzatok/KELER Általános Üzletszabályzat/2013. évi dokumentumok/2013_01_01_KELER_AUSZ.pdf
+/Root/Sites/KELER/Dokumentumtár/Szabályzatok/KELER Általános Üzletszabályzat/2013. évi dokumentumok/2013_04_08_KELER_AUSZ_warp_F_korr.pdf
+/Root/Sites/KSZF/Elszámolás/Derivatív/Szegregáció/2015_02_20_Derivativ_Szegregacio_Lehetosegek_Kockazatok.pdf
+/Root/Sites/KSZF/Elszámolás/Multinet/Szegregáció_2fhordozhatóság/doksi/2015 02 20 Multinet Szegregáció Lehetőségek és Kockázatok.pdf
+/Root/Sites/KSZF/Elszámolás/Multinet/Szegregáció_2fhordozhatóság/doksi/Multinet_5fSzegregáció_5fLehetőségek_26Kockázatok_5f20150220.pdf
+/Root/Sites/KELER/Szolgáltatások/Treasury szolgáltatások/doksi/2014_03_14_keler_treasury_korrless .pdf
+/Root/Sites/KELER/Dokumentumtár/Formaszerződések/tabs/Formaszerződések/(01.sz.) Értékpapírszámla vezetési és számla-nyilvántartási szerződés (2 pld.)/01_2014_10_01_ ertekpapirszamla_vezetesi_es_szamlanyilvantartasi_szerzodes.pdf
+/Root/Sites/KELER/Dokumentumtár/Formaszerződések/tabs/Formaszerződések/(25. sz.) Gázpiaci klíringtagsági szerződés/2014_08_01_25 GÁZPIACI KLÍRINGTAGSÁGI SZERZŐDÉS.pdf
+/Root/Sites/KELER/Dokumentumtár/Formaszerződések/tabs/Formaszerződések/(05.sz.) Szerződés az EMIR cikke szerinti adatok kereskedési adatár felé történő továbbításáról alapkezelők részére/2014_10_01 _05 SZERZŐDÉS AZ EMIR 9. CIKKE SZERINTI ADATOK KERESKEDÉSI ADATTÁR FELÉ TÖRTÉNŐ TOVÁBBÍTÁSÁRA ALAPKEZELŐK RÉSZÉRE.pdf
+/Root/Sites/KELER/Dokumentumtár/Formaszerződések/tabs/Formaszerződések/(29. sz.) Kiegészítés kibocsátói megállapodáshoz nyíltvégű befektetési jegyekhez (háromoldalú megállapodás)/2015_02_01_29 kiegeszites_kibocsatoi_megallapodashoz_nyiltvegu.pdf
+/Root/Sites/En-KELER/Key documents/Business Forms_old/Business Forms_old/US TAX/warp instrukci formanyomtatvny.pdf
+/Root/Sites/KELER/Dokumentumtár/Formanyomtatványok/Aláírásbejelentő lap/2014_04_alairasbejento.pdf
+/Root/Sites/KELER/Dokumentumtár/Formanyomtatványok/Befektetési jegyek törlése és keletkeztetése_2c WARP/2014 12 01 BEFEKTETÉSI JEGY NAPI KELETKEZTETÉSE  TÖRLÉSE FIZETÉS ELLENÉBEN (DVP) - ELSZÁMOLÁSI JEGY.pdf
+/Root/Sites/KELER/Dokumentumtár/Formanyomtatványok/Certifikátok/2014 certificate_befogadasi_kerelem_hu.pdf
+/Root/Sites/KELER/Dokumentumtár/Formanyomtatványok/Certifikátok/2014 Befogadási kérelem (ANGOL).pdf
+/Root/Sites/KELER/Dokumentumtár/Formanyomtatványok/FATCA/2014_11_ 25_ _facta adatlap.pdf
+/Root/Sites/KELER/Dokumentumtár/Formanyomtatványok/Fizetés véglegessége (finality)/2014_04_14_Nyilatkozat - Közvetett Résztvevő ellen indított fizetést korlátozó eljárásban érintett Képviseletében.pdf
+/Root/Sites/KELER/Dokumentumtár/Formanyomtatványok/ISIN nyomtatványok/2014 06 25 1_változás bejelentő központi értékpapír nyilvántartáshoz.pdf
+/Root/Sites/KELER/Dokumentumtár/Formanyomtatványok/ISIN nyomtatványok/2014 07 14 5. Adatlap értékpapírkód (ISIN azonosító) kiadásához befektetési jegy_2c ideiglenes befektetési jegy esetén.pdf
+/Root/Sites/KELER/Dokumentumtár/Formanyomtatványok/KID/2012_08_30_Adatlap a KIS rendszer jelszó policy beállításához.pdf
+/Root/Sites/KELER/Dokumentumtár/Formanyomtatványok/Pénzforgalom/készpénzkiszállítás.pdf
+/Root/Sites/KELER/Dokumentumtár/Formanyomtatványok/Osztalékfizetés/uj_ehonyilatkozat.pdf
+/Root/Sites/KELER/Dokumentumtár/Formanyomtatványok/Pénzmosás/2014_04_18_pmt_penzmosas_hirdetmeny.pdf
+/Root/Sites/KELER/Dokumentumtár/Formanyomtatványok/Francia tranzakciós adóhoz kapcsolódó nyomtatványok/ftt-example of a declaration ii..pdf
+/Root/Sites/KELER/Dokumentumtár/Formanyomtatványok/SMP/2014_06_24_rendszercsere_kapcsolattarto_adatlap.pdf
+/Root/Sites/KELER/Dokumentumtár/Formanyomtatványok/Trade Repository/2014_01_21_by keler_ccp_emirdo ANGOL.pdf
+/Root/Sites/KELER/Dokumentumtár/Formanyomtatványok/Trade Repository/2014_01_21_kelerkszf_emir_dokliringtag.pdf
