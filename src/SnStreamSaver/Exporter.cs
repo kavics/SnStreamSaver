@@ -1,58 +1,40 @@
-﻿using System.Data;
-using System.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
-
-namespace SnStreamSaver;
+﻿namespace SnStreamSaver;
 
 internal class Exporter
 {
     private readonly string _source;
     private readonly string _target;
-    private readonly IConfiguration _config;
-    private string _connectionString;
+    private readonly IDataProvider _dataProvider;
 
-    public Exporter(string source, string target, IConfiguration config)
+    public Exporter(string source, string target, IDataProvider dataProvider)
     {
         _source = source;
         _target = target;
-        _config = config;
+        _dataProvider = dataProvider;
     }
 
-    public void Run()
+    public async Task RunAsync(CancellationToken cancel)
     {
-        _connectionString = _config.GetConnectionString("sn-repo");
-        string[] snPaths = File.ReadAllLines(_source);
+        Console.WriteLine();
+        Console.WriteLine("EXPORTING FILES");
+        string[] snPaths = await File.ReadAllLinesAsync(_source, cancel);
+        if (snPaths.Length == 0)
+        {
+            Console.WriteLine("Path-list is empty.");
+            return;
+        }
+
         var index = 0;
+        var filesWritten = 0;
         foreach (var snPath in snPaths)
         {
             var fsPath = snPath.Substring("/Root/".Length).Replace('/', '\\');
             fsPath = Path.Combine(_target, fsPath);
-            var parentFsPath = Path.GetDirectoryName(fsPath);
-            if (!Directory.Exists(parentFsPath))
-                Directory.CreateDirectory(parentFsPath);
-            SaveFileData(snPath, fsPath);
-            Console.Write($"  {++index} / {snPaths.Length}    \r");
+            var written = await _dataProvider.ExportFileDataAsync(snPath, fsPath, cancel);
+            if (written)
+                filesWritten++;
+            Console.Write($"  Read: {++index}/{snPaths.Length}, Write: {filesWritten}    \r");
         }
-    }
-
-    private string _sql = @"SELECT
-N.NodeId, N.Name, N.Path, V.MajorNumber, V.MinorNumber, V.Status, B.PropertyTypeId,
-B.FileNameWithoutExtension, B.Extension, B.Stream
-FROM Nodes N
-	JOIN Versions V ON V.VersionId = N.LastMajorVersionId
-	JOIN BinaryProperties B ON B.VersionId = V.VersionId
-WHERE N.Path = @Path";
-    private void SaveFileData(string snPath, string fsPath)
-    {
-        using var connection = new SqlConnection(_connectionString);
-        using var command = new SqlCommand(_sql, connection);
-        command.Parameters.Add("@Path", SqlDbType.NVarChar, 450).Value = snPath;
-        connection.Open();
-        using var dataReader = command.ExecuteReader();
-        if (dataReader.Read())
-        {
-            var data = (byte[]) dataReader["Stream"];
-            File.WriteAllBytes(fsPath, data);
-        }
+        Console.WriteLine($"\r\nOk.");
     }
 }

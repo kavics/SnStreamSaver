@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System.Runtime.InteropServices;
+using Microsoft.Extensions.Configuration;
 
 namespace SnStreamSaver;
 
@@ -12,8 +13,8 @@ internal class App
     private IConfiguration _config;
     private readonly string[] _args;
     private Mode _mode;
-    private string _source;
-    private string _target;
+    private string _pathListFile;
+    private string _fsContainer;
 
     public App(IConfiguration config, string[] args)
     {
@@ -21,7 +22,7 @@ internal class App
         _args = args;
     }
 
-    public void Run()
+    public async Task RunAsync(CancellationToken cancel)
     {
         if (!ParseArgs(_args))
         {
@@ -30,35 +31,52 @@ internal class App
             Console.WriteLine("<MODE> <SOURCE> <TARGET>");
             Console.WriteLine("Valid cases:");
             Console.WriteLine("EXPORT <SN-PATH-LIST-FILE> <FS-TARGET>");
-            //Console.WriteLine("IMPORT <FS-SOURCE> <SN-TARGET>");
+            Console.WriteLine("IMPORT <SN-PATH-LIST-FILE> <FS-SOURCE>");
             return;
         }
 
-        if (_mode == Mode.Export)
+
+        _pathListFile = Path.GetFullPath(_pathListFile);
+        _fsContainer = Path.GetFullPath(_fsContainer);
+        if (!File.Exists(_pathListFile))
         {
-            _source = Path.GetFullPath(_source);
-            _target = Path.GetFullPath(_target);
-            if (!File.Exists(_source))
+            Console.WriteLine("ERROR: Path-list file does not exist: " + _pathListFile);
+            return;
+        }
+
+        if (!Directory.Exists(_fsContainer))
+        {
+            if (_mode == Mode.Export)
             {
-                Console.WriteLine("ERROR: Path list does not exist: " + _source);
+                Directory.CreateDirectory(_fsContainer);
+            }
+            else
+            {
+                Console.WriteLine("ERROR: Source container does not exist: " + _fsContainer);
                 return;
             }
-
-            if (!Directory.Exists(_target))
-                Directory.CreateDirectory(_target);
         }
-        //else
-        //{
-        //    _source = Path.GetFullPath(_source);
-        //}
 
-        Console.WriteLine($"Mode:   {_mode.ToString().ToUpperInvariant()}");
-        Console.WriteLine($"Source: {_source}");
-        Console.WriteLine($"Target: {_target}");
+        Console.WriteLine($"Mode:        {_mode.ToString().ToUpperInvariant()}");
+        Console.WriteLine($"Paths:       {_pathListFile}");
+        Console.WriteLine($"Files:       {_fsContainer}");
+
+        var dataProvider = await DataProvider.CreateDataProviderAsync(_config, cancel);
+        if (dataProvider == null)
+        {
+            Console.WriteLine("ERROR: Cannot create a data provider.");
+            return;
+        }
+
+        var dbInfo = dataProvider.GetInfo();
+        Console.WriteLine($"Data server: {dbInfo.Server}");
+        Console.WriteLine($"Database:    {dbInfo.Database}");
+        Console.WriteLine($"DbVersion:   {dbInfo.DbVersion}");
 
         if (_mode == Mode.Export)
         {
-            new Exporter(_source, _target, _config).Run();
+            var exporter = new Exporter(_pathListFile, _fsContainer, dataProvider);
+            await exporter.RunAsync(CancellationToken.None);
             return;
         }
 
@@ -68,10 +86,10 @@ internal class App
 
     private bool ParseArgs(string[] args)
     {
-        // args[0] args[1]       args[2]
-        // ------- ------------- -------------
-        // EXPORT  /Root/Content export
-        // IMPORT  import        /Root/Content
+        // args[0] args[1]   args[2]
+        // ------- --------- -------
+        //  EXPORT paths.txt c:\export
+        //  IMPORT paths.txt c:\import
 
         if (args.Length < 1)
         {
@@ -87,19 +105,17 @@ internal class App
 
         if (args.Length < 2)
         {
-            var expectation = _mode == Mode.Export ? "a repository path" : " a filesystem path";
-            Console.WriteLine($"Missing source path. Expected {expectation}");
+            Console.WriteLine("Missing path-list file.");
             return false;
         }
-        _source = args[1];
+        _pathListFile = args[1];
 
         if (args.Length < 3)
         {
-            var expectation = _mode == Mode.Export ? " a filesystem path" : "a repository path";
-            Console.WriteLine($"Missing target path. Expected {expectation}");
+            Console.WriteLine($"Missing container path. Expected a filesystem directory");
             return false;
         }
-        _target = args[2];
+        _fsContainer = args[2];
 
         return true;
     }

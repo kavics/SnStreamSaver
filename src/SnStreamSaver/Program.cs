@@ -5,4 +5,5 @@ IConfiguration config = new ConfigurationBuilder()
     .AddJsonFile("appSettings.json", optional: true, reloadOnChange: true)
     .Build();
 
-new App(config, args).Run();
+var app = new App(config, args);
+await app.RunAsync(CancellationToken.None);

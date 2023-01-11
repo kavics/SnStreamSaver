@@ -2,8 +2,9 @@
   "profiles": {
     "SnStreamSaver": {
       "commandName": "Project",
-      "commandLineArgs": "EXPORT ExamplePaths.txt export1"
-      //"commandLineArgs": "IMPORT export1 /Root/Content"
+      //"commandLineArgs": "EXPORT ExamplePaths.txt export1"
+      "commandLineArgs": "EXPORT ExamplePathsV2.txt export2"
+      //"commandLineArgs": "IMPORT ExamplePathsV2.txt export2"
     }
   }
 }
