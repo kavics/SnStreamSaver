@@ -28,7 +28,7 @@ internal class App
         {
             Console.WriteLine();
             Console.WriteLine("USAGE:");
-            Console.WriteLine("<MODE> <SOURCE> <TARGET>");
+            Console.WriteLine("<MODE> <PATH-LIST-FILE> <FS-DIRECTORY>");
             Console.WriteLine("Valid cases:");
             Console.WriteLine("EXPORT <SN-PATH-LIST-FILE> <FS-TARGET>");
             Console.WriteLine("IMPORT <SN-PATH-LIST-FILE> <FS-SOURCE>");
@@ -76,6 +76,12 @@ internal class App
         if (_mode == Mode.Export)
         {
             var exporter = new Exporter(_pathListFile, _fsContainer, dataProvider);
+            await exporter.RunAsync(CancellationToken.None);
+            return;
+        }
+        if (_mode == Mode.Import)
+        {
+            var exporter = new Importer(_pathListFile, _fsContainer, dataProvider);
             await exporter.RunAsync(CancellationToken.None);
             return;
         }

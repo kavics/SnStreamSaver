@@ -6,8 +6,9 @@ namespace SnStreamSaver;
 
 internal interface IDataProvider
 {
-    Task<bool> ExportFileDataAsync(string snPath, string fsPath, CancellationToken cancel);
     DbInfo GetInfo();
+    Task<bool> ExportFileDataAsync(string snPath, string fsPath, CancellationToken cancel);
+    Task<bool> ImportFileDataAsync(string snPath, string fsPath, CancellationToken cancel);
 }
 
 internal abstract class DataProvider : IDataProvider
@@ -43,6 +44,8 @@ internal abstract class DataProvider : IDataProvider
         }
         return false; // no file was written
     }
+
+    public abstract Task<bool> ImportFileDataAsync(string snPath, string fsPath, CancellationToken cancel);
 
     public DbInfo GetInfo()
     {
