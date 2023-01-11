@@ -33,7 +33,7 @@ internal class Exporter
             var written = await _dataProvider.ExportFileDataAsync(snPath, fsPath, cancel);
             if (written)
                 filesWritten++;
-            Console.Write($"  Read: {++index}/{snPaths.Length}, Write: {filesWritten}    \r");
+            Console.Write($"  Read: {++index}/{snPaths.Length}, Export: {filesWritten}    \r");
         }
         Console.WriteLine($"\r\nOk.");
     }

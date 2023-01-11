@@ -33,7 +33,7 @@ internal class Importer
             var written = await _dataProvider.ImportFileDataAsync(snPath, fsPath, cancel);
             if (written)
                 filesWritten++;
-            Console.Write($"  Read: {++index}/{snPaths.Length}, Write: {filesWritten}    \r");
+            Console.Write($"  Read: {++index}/{snPaths.Length}, Import: {filesWritten}    \r");
         }
         Console.WriteLine($"\r\nOk.");
     }
